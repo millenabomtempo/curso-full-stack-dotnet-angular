@@ -11,8 +11,12 @@
 <table class="table table-striped">
   <thead class="thead-dark">
     <tr>
+      <th>
+        <button class="btn btn-outline-light btn-sm" (click)="isImgShown()">
+          {{ !showImg ? 'Exibir' : 'Ocultar'}}
+        </button>
+      </th>
       <th>#</th>
-      <th>Imagem</th>
       <th>Tema</th>
       <th>Local</th>
       <th>Data</th>
@@ -21,10 +25,19 @@
       <th>Opções</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody *ngIf="eventos && eventos.length">
     <tr *ngFor="let evento of eventos">
+      <td>
+        <img
+          [collapse]="!showImg"
+          [isAnimated]="true"
+          src="/assets/{{ evento.imagemURL }}"
+          alt=""
+          [style.width.px]="widthImg"
+          [style.margin.px]="marginImg"
+        >
+      </td>
       <td>{{ evento.eventoId }}</td>
-      <td>{{ evento.imagemURL }}</td>
       <td>{{ evento.tema }}</td>
       <td>{{ evento.local }}</td>
       <td>{{ evento.dataEvento }}</td>
@@ -33,4 +46,11 @@
       <td></td>
     </tr>
   </tbody>
+  <tfoot *ngIf="!eventos.length">
+    <tr>
+      <td colspan="8" class="text-center">
+        <h4>Nenhum evento encontrado!</h4>
+      </td>
+    </tr>
+  </tfoot>
 </table>
