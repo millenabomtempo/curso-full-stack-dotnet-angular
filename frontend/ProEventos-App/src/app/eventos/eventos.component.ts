@@ -24,21 +24,6 @@ export class EventosComponent implements OnInit {
       response => this.eventos = response,
       error => console.log(error)
     );
-
-    // this.eventos = [
-    //   {
-    //     Tema: 'Angular',
-    //     Local: 'Belo Horizonte'
-    //   },
-    //   {
-    //     Tema: 'Angular 2',
-    //     Local: 'Belo Horizonte'
-    //   },
-    //   {
-    //     Tema: 'Angular 3',
-    //     Local: 'Belo Horizonte'
-    //   },
-    // ]
   }
 
 }
