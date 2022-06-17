@@ -5,35 +5,31 @@ import { EventoService } from '../services/evento.service';
 @Component({
   selector: 'app-eventos',
   templateUrl: './eventos.component.html',
-  styleUrls: ['./eventos.component.scss']
+  styleUrls: ['./eventos.component.scss'],
 })
 export class EventosComponent implements OnInit {
-
   public eventos: Evento[] = [];
   public eventosFiltrados: Evento[] = [];
-  private _filterList: string = '';
+  private filteredList = '';
 
-  widthImg: number = 150;
-  marginImg: number = 2;
-  showImg: boolean = true;
+  widthImg = 150;
+  marginImg = 2;
+  showImg = true;
 
-  constructor(
-    private eventoService: EventoService
-  ) { }
+  constructor(private eventoService: EventoService) {}
 
   ngOnInit(): void {
     this.getEventos();
   }
 
   public getEventos(): void {
-
-    this.eventoService.getEvento().subscribe(
-      (_eventos: Evento[]) => {
-        this.eventos = _eventos;
+    this.eventoService.getEvento().subscribe({
+      next: (eventosResponse: Evento[]) => {
+        this.eventos = eventosResponse;
         this.eventosFiltrados = this.eventos;
       },
-      error => console.log(error)
-    );
+      error: (error) => console.log(error)
+    });
   }
 
   public isImgShown(): void {
@@ -43,17 +39,20 @@ export class EventosComponent implements OnInit {
   public filterEvents(filter: string): Evento[] {
     filter = filter.toLocaleLowerCase();
     return this.eventos.filter(
-      (evento: { tema: string;  local: string;}) => evento.tema.toLocaleLowerCase().indexOf(filter) !== -1 ||
-      evento.local.toLocaleLowerCase().indexOf(filter) !== -1
-    )
+      (evento: { tema: string; local: string }) =>
+        evento.tema.toLocaleLowerCase().indexOf(filter) !== -1 ||
+        evento.local.toLocaleLowerCase().indexOf(filter) !== -1
+    );
   }
 
   public get filterList() {
-    return this._filterList;
+    return this.filteredList;
   }
 
   public set filterList(value: string) {
-    this._filterList = value;
-    this.eventosFiltrados = this.filterList ? this.filterEvents(this.filterList) : this.eventos;
+    this.filteredList = value;
+    this.eventosFiltrados = this.filterList
+      ? this.filterEvents(this.filterList)
+      : this.eventos;
   }
 }
