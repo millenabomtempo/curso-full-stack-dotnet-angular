@@ -9,7 +9,7 @@ import { PalestrantesComponent } from './components/palestrantes/palestrantes.co
 import { PerfilComponent } from './components/perfil/perfil.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: 'eventos', redirectTo: 'eventos/lista'},
   { path: 'eventos', component: EventosComponent,
     children: [
       { path: 'detalhe/:id', component: EventoDetalheComponent },
@@ -21,6 +21,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent},
   { path: 'palestrantes', component: PalestrantesComponent},
   { path: 'perfil', component: PerfilComponent},
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: '**', redirectTo: 'dashboard', pathMatch: 'full' },
 ];
 
