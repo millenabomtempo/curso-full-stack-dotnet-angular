@@ -25,7 +25,7 @@ import { EventosComponent } from './components/eventos/eventos.component';
 import { EventoDetalheComponent } from './components/eventos/evento-detalhe/evento-detalhe.component';
 import { EventoListaComponent } from './components/eventos/evento-lista/evento-lista.component';
 import { PalestrantesComponent } from './components/palestrantes/palestrantes.component';
-import { PerfilComponent } from './components/perfil/perfil.component';
+import { PerfilComponent } from './components/user/perfil/perfil.component';
 
 import { TitleComponent } from './shared/title/title.component';
 import { NavComponent } from './shared/nav/nav.component';
