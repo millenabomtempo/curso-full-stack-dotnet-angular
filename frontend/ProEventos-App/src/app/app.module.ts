@@ -29,6 +29,9 @@ import { PerfilComponent } from './components/perfil/perfil.component';
 
 import { TitleComponent } from './shared/title/title.component';
 import { NavComponent } from './shared/nav/nav.component';
+import { UserComponent } from './components/user/user.component';
+import { LoginComponent } from './components/user/login/login.component';
+import { RegistrationComponent } from './components/user/registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +46,9 @@ import { NavComponent } from './shared/nav/nav.component';
     DateTimeFormatPipe,
     EventoDetalheComponent,
     EventoListaComponent,
+    UserComponent,
+    LoginComponent,
+    RegistrationComponent,
    ],
   imports: [
     BrowserModule,
