@@ -9,36 +9,81 @@
 
 	<div class="col-md-6">
 
-    <form class="p-1">
+    <form class="p-1" [formGroup]="form">
       <div class="pb-2 d-block d-md-none">
         <h3 class="border-bottom">Cadastro de Usuário</h3>
       </div>
       <div class="form-row">
         <div class="form-group col-sm-6">
           <label>Primeiro Nome</label>
-          <input type="text" class="form-control" placeholder="Insira o Primeiro nome" />
+          <input
+            type="text"
+            class="form-control"
+            [ngClass]="{'is-invalid': f.nome.errors && f.nome.touched}"
+            formControlName="nome"
+            placeholder="Insira o Primeiro nome"
+          />
+          <div *ngIf="f.nome.errors?.required" class="invalid-feedback">Campo obrigatório</div>
         </div>
         <div class="form-group col-sm-6">
           <label>Último nome</label>
-          <input type="text" class="form-control" placeholder="Insira o Último nome" />
+          <input
+            type="text"
+            class="form-control"
+            [ngClass]="{'is-invalid': f.sobrenome.errors && f.sobrenome.touched}"
+            formControlName="sobrenome"
+            placeholder="Insira o Último nome"
+          />
+          <div *ngIf="f.sobrenome.errors?.required" class="invalid-feedback">Campo obrigatório</div>
         </div>
       </div>
       <div class="form-group">
         <label for="">Email:</label>
-        <input class="form-control" type="text" placeholder="Insira o Nome Completo" />
+        <input
+          class="form-control"
+          [ngClass]="{'is-invalid': f.email.errors && f.email.touched}"
+          formControlName="email"
+          type="text"
+          placeholder="Insira o E-mail"
+        />
+        <div *ngIf="f.email.errors?.required" class="invalid-feedback">Campo obrigatório</div>
+        <div *ngIf="f.email.errors?.email" class="invalid-feedback">Campo deve ser um e-mail válido</div>
       </div>
       <div class="form-group">
         <label for="">Usuario:</label>
-        <input class="form-control" type="text" placeholder="Insira o nome de Usuário" />
+        <input
+          class="form-control"
+          [ngClass]="{'is-invalid': f.usuario.errors && f.usuario.touched}"
+          formControlName="usuario"
+          type="text"
+          placeholder="Insira o nome de Usuário"
+        />
+        <div *ngIf="f.usuario.errors?.required" class="invalid-feedback">Campo obrigatório</div>
       </div>
       <div class="form-row">
         <div class="form-group col-sm-6">
           <label for="">Senha:</label>
-          <input class="form-control" type="password" placeholder="Digite uma Senha" />
+          <input
+            class="form-control"
+            [ngClass]="{'is-invalid': f.senha.errors && f.senha.touched}"
+            formControlName="senha"
+            type="password"
+            placeholder="Digite uma Senha"
+          />
+          <div *ngIf="f.senha.errors?.required" class="invalid-feedback">Campo obrigatório</div>
+          <div *ngIf="f.senha.errors?.minlength" class="invalid-feedback">Campo deve ter no mínimo 6 caracteres</div>
         </div>
         <div class="form-group col-sm-6">
           <label for="">Confirmar Senha:</label>
-          <input class="form-control" type="password" placeholder="Confirme a Senha" />
+          <input
+            class="form-control"
+            [ngClass]="{'is-invalid': f.confirmaSenha.errors && f.confirmaSenha.touched}"
+            formControlName="confirmaSenha"
+            type="password"
+            placeholder="Confirme a Senha"
+          />
+          <div *ngIf="f.confirmaSenha.errors?.required" class="invalid-feedback">Campo obrigatório</div>
+          <div *ngIf="f.confirmaSenha.errors?.mustMatch" class="invalid-feedback">Senhas não batem</div>
         </div>
       </div>
       <div class="form-row p-1 mb-3">
@@ -49,7 +94,7 @@
       </div>
       <div class="form-row">
         <div class="form-group col-12">
-          <button class="btn btn-lg btn-success btn-block px-5">
+          <button class="btn btn-lg btn-success btn-block px-5" [disabled]="!form.valid">
             Registar
           </button>
         </div>
